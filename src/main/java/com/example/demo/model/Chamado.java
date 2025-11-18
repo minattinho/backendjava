@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enums.Prioridade;
+import com.example.demo.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
@@ -19,6 +21,8 @@ public class Chamado implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
 
+    private Integer prioridade;
+    private Integer status;
     private String titulo;
     private String observacoes;
 
@@ -31,6 +35,7 @@ public class Chamado implements Serializable {
     private Cliente cliente;
 
     public Chamado() {
+        super();
     }
 
     public Chamado(Integer id, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
@@ -63,6 +68,36 @@ public class Chamado implements Serializable {
 
     public void setDataFechamento(LocalDate dataFechamento) {
         this.dataFechamento = dataFechamento;
+    }
+
+    public Prioridade getPrioridade() {
+        if (prioridade == null) {
+            return null;
+        }
+        return Prioridade.values()[prioridade];
+    }
+
+    public void setPrioridade(Prioridade prioridade) {
+        if (prioridade == null) {
+            this.prioridade = null;
+        } else {
+            this.prioridade = prioridade.ordinal();
+        }
+    }
+
+    public Status getStatus() {
+        if (status == null) {
+            return null;
+        }
+        return Status.values()[status];
+    }
+
+    public void setStatus(Status status) {
+        if (status == null) {
+            this.status = null;
+        } else {
+            this.status = status.ordinal();
+        }
     }
 
     public String getTitulo() {

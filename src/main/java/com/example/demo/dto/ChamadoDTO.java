@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -14,7 +15,11 @@ public class ChamadoDTO implements Serializable {
     private LocalDate dataFechamento;
     private Integer prioridade;
     private Integer status;
+    
+    @NotEmpty(message = "O campo TÍTULO é requerido")
     private String titulo;
+    
+    @NotEmpty(message = "O campo OBSERVAÇÕES é requerido")
     private String observacoes;
     private Integer tecnico;
     private Integer cliente;
